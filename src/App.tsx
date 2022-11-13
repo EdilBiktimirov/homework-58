@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Modal from "./components/Modal/Modal";
+import Alert from "./components/Alert/Alert";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+
+  const cancelModal = () => setShowModal(false);
+  const cancelAlert = () => setShowAlert(false);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <button
+        onClick={() => setShowModal(true)}
+        className="btn btn-warning"
+      >Show modal
+      </button>
+      <Modal show={showModal} title="This is demo modal title" onClose={cancelModal}>
+        <div className="modal-body">
+          This is demo modal content
+        </div>
+        <div className="modal-footer">
+        <button
+          className="btn btn-danger"
+          onClick={cancelModal}
         >
-          Learn React
-        </a>
-      </header>
+          Cancel
+        </button>
+        </div>
+      </Modal>
+
+
+      <Alert type={'warning'} onDismiss={cancelAlert} show={showAlert}>Text</Alert>
+      <button
+        onClick={() => setShowAlert(true)}
+        className="btn btn-warning"
+      >Show alert
+      </button>
     </div>
   );
 }
