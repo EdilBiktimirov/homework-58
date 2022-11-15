@@ -7,6 +7,7 @@ interface Props {
 }
 
 const ModalBody: React.FC<Props> = ({btnConfig, onBtnClick}) => {
+
   return (
     <>
       <div className="modal-body">
